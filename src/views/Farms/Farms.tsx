@@ -433,7 +433,7 @@ const Farms: React.FC<FarmsProps> = ({ tokenMode, kingdomMode }) => {
       <PageHeader>
         <div className="columns-cad">
           <div className="column-cad">
-            <Heading as="h1" size="xxl" color="secondary" mb="15px">
+            <Heading as="h1" size="xxl" color="primary" mb="15px">
               {header}
             </Heading>
             <Heading as="h1" size="lg" color="primary" mb="20px" style={{ textAlign: 'left' }}>
@@ -445,7 +445,7 @@ const Farms: React.FC<FarmsProps> = ({ tokenMode, kingdomMode }) => {
 
           <div className="column-cad" style={{ height: '100%', display: 'flex', flexDirection: 'row', flexGrow: 1 }}>
             <AdditionalHeader />
-            <Card style={{ height: '100%', flexGrow: 1, maxWidth: '400px', marginLeft: 'auto', padding: '10px 20px' }}>
+            {/* <Card style={{ height: '100%', flexGrow: 1, maxWidth: '400px', marginLeft: 'auto', padding: '10px 20px' }}>
               <Heading>
                 <HiveLogo /> Multi-Token Bridge
               </Heading>
@@ -460,7 +460,7 @@ const Farms: React.FC<FarmsProps> = ({ tokenMode, kingdomMode }) => {
               <Button className="button-cad">
                 <a href="https://docs.cubdefi.com/mechanics/multi-token-bridge">How it Works</a>
               </Button>
-            </Card>
+            </Card> */}
           </div>
         </div>
       </PageHeader>

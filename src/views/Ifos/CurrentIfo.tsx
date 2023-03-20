@@ -49,7 +49,7 @@ const Ifo = () => {
           <Heading mb="16px">{TranslateString(594, 'Before IDO')}:</Heading>
           <List>
             <li>{TranslateString(596, 'Buy BOYD and BUSD Tokens')}</li>
-            <li>{TranslateString(598, 'Get BOYD-BUSD LP tokens (PCSv2 Only) on ShibariumSwap')}</li>
+            <li>{TranslateString(598, 'Get BOYD-BUSD LP tokens (ShibaSwap Only) on ShibariumSwap')}</li>
           </List>
           <Flex mb="16px">
             <LinkExternal href="https://exchange.cubdefi.com/" mr="16px">
@@ -73,14 +73,14 @@ const Ifo = () => {
             <Button
               as="a"
               variant="secondary"
-              href="https://docs.cubdefi.com/major-feature-releases/initial-dex-offering-ido"
+              href="https://forms.gle/Q2BBZE4BioxtD9TM9"
             >
               {TranslateString(610, 'Read more')}
             </Button>
           </Text>
         </div>
         <div>
-          <Image src="/images/cub/BoneshibCharacter.png" alt="ifo bunny" width={436} height={406} responsive />
+          <Image src="/images/cub/ido_img.png" alt="ifo bunny" width={436} height={344} responsive />
           <div>
             <Title as="h2">{TranslateString(512, 'Want to launch your own IDO?')}</Title>
             <Text mb={3}>

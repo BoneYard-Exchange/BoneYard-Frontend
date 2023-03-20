@@ -306,8 +306,8 @@ const Kingdoms: React.FC = () => {
     <>
       <PageHeader>
         <div className='k-header'>
-          <Heading as="h1" size="xxl" color="secondary" mb="10px">
-            Kingdoms
+          <Heading as="h1" size="xxl" color="primary" mb="10px">
+            Vaults
           </Heading>
           <Flex>
             <Text bold fontSize="24px">
@@ -319,21 +319,21 @@ const Kingdoms: React.FC = () => {
         <Heading as="h1" size="lg" color="primary" mb="10px" style={{ textAlign: 'left' }}>
           Composable Auto-Compounding
         </Heading>
-        <Heading as="h2" color="secondary" mb="10px" style={{ textAlign: 'left' }}>
+        <Heading as="h2" color="primary" mb="10px" style={{ textAlign: 'left' }}>
           Stake tokens for cross-platform farming plus BOYD rewards
         </Heading>
         <Heading as="h2" color="warning" mb="10px" style={{ textAlign: 'left' }}>
-          IMPORTANT: Must use the host farm exchange (eg. PCS, Bakery) for Kingdom LP tokens
+          IMPORTANT: Must use the host farm exchange (eg. ShibaSwap, PawSwap) for Vault LP tokens
         </Heading>
         <Heading as="h2" color="warning" mb="10px" style={{ textAlign: 'left' }}>
-          CertiK Audit is Pending: Our other contracts have been audited by CertiK and Kingdoms are currently under review. Please use at your own discretion until the audit has been published
+          CertiK Audit is Pending: Our other contracts have been audited by CertiK and Vaults are currently under review. Please use at your own discretion until the audit has been published
         </Heading>
         <FeeWrapper>
-          <Heading as="h2" color="secondary" mb="5px" style={{ textAlign: 'left' }}>
+          <Heading as="h2" color="primary" mb="5px" style={{ textAlign: 'left' }}>
             Fees
           </Heading>
           <Flex justifyContent="space-between">
-            <Text>Fee for BOYD Staking Kingdom BONE Dividends:</Text>
+            <Text>Fee for BOYD Staking Vaults BONE Dividends:</Text>
             <Text>3%</Text>
           </Flex>
           <Flex justifyContent="space-between">
