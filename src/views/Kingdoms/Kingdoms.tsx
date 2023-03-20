@@ -342,7 +342,7 @@ const Kingdoms: React.FC = () => {
           </Flex>
           <Flex justifyContent="space-between">
             <Text>BOYD Burn Rate:</Text>
-            <Text>100% of Fees Buyback and Burn CUB</Text>
+            <Text>100% of Fees Buyback and Burn BOYD</Text>
           </Flex>
           <Flex justifyContent="space-between">
             <Text>Withdrawal Fee:</Text>
