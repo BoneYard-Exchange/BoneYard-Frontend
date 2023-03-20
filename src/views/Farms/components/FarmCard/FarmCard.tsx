@@ -205,10 +205,10 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, account }
           // bscScanAddress={`https://bscscan.com/address/${farm.lpAddresses[process.env.REACT_APP_CHAIN_ID]}`}
           bscScanAddress={
             farm.isTokenOnly
-              ? `https://bscscan.com/token/${farm.token.address[process.env.REACT_APP_CHAIN_ID]}`
-              : `https://bscscan.com/token/${farm.lpAddresses[process.env.REACT_APP_CHAIN_ID]}`
+              ? `https://app.uniswap.org/#/add/v2/${farm.token.address[process.env.REACT_APP_CHAIN_ID]}`
+              : `https://app.uniswap.org/#/add/v2/${farm.lpAddresses[process.env.REACT_APP_CHAIN_ID]}`
           }
-          infoAddress={`https://pancakeswap.info/pair/${lpAddress}`}
+          infoAddress={`https://v2.info.uniswap.org/pairs/${lpAddress}`}
           totalValueFormatted={totalValueFormatted}
           lpLabel={lpLabel}
           addLiquidityUrl={addLiquidityUrl}
