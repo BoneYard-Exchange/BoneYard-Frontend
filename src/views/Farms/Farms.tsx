@@ -3,7 +3,7 @@ import { Route, useRouteMatch, useLocation } from 'react-router-dom'
 import { useAppDispatch } from 'state'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
-import {Image, Heading, RowType, Toggle, Text, Button, Card} from '@boneyard/uikit'
+import { Image, Heading, RowType, Toggle, Text, Button, Card } from '@boneyard/uikit'
 import styled from 'styled-components'
 import FlexLayout from 'components/layout/Flex'
 import Page from 'components/layout/Page'
@@ -31,11 +31,10 @@ import SearchInput from './components/SearchInput'
 import { RowProps } from './components/FarmTable/Row'
 import ToggleView from './components/ToggleView/ToggleView'
 import { DesktopColumnSchema, ViewMode } from './components/types'
-import aprApy from "../Kingdoms/components/AprApy";
-import {getRoi, tokenEarnedPerThousandDollarsCompounding} from "../../utils/compoundApyHelpers";
-import AdditionalHeader, {HiveLogo} from "../../style/AdditionalHeader";
+import aprApy from '../Kingdoms/components/AprApy'
+import { getRoi, tokenEarnedPerThousandDollarsCompounding } from '../../utils/compoundApyHelpers'
+import AdditionalHeader, { HiveLogo } from '../../style/AdditionalHeader'
 // import CardValue from '../Home/components/CardValue'
-
 
 const ControlContainer = styled.div`
   display: flex;
@@ -118,7 +117,7 @@ const Wrapper = styled.div`
 
 const NUMBER_OF_FARMS_VISIBLE = 12
 
-export interface FarmsProps{
+export interface FarmsProps {
   tokenMode?: boolean
   kingdomMode?: boolean
 }
@@ -170,18 +169,28 @@ const Farms: React.FC<FarmsProps> = ({ tokenMode, kingdomMode }) => {
   }, [isArchived, dispatch, account])
 
   // const activeFarms = farmsLP.filter((farm) => farm.multiplier !== '0X' && !isArchivedPid(farm.pid))
-  const activeFarms = farmsLP.filter(farm => {
+  const activeFarms = farmsLP.filter((farm) => {
     if (kingdomMode) {
       return !!farm.isKingdom === !!kingdomMode && farm.multiplier !== '0X' && !isArchivedPid(farm.pid)
     }
-    return !!farm.isTokenOnly === !!tokenMode && !!farm.isKingdom === !!kingdomMode && farm.multiplier !== '0X' && !isArchivedPid(farm.pid)
+    return (
+      !!farm.isTokenOnly === !!tokenMode &&
+      !!farm.isKingdom === !!kingdomMode &&
+      farm.multiplier !== '0X' &&
+      !isArchivedPid(farm.pid)
+    )
   })
   // const inactiveFarms = farmsLP.filter((farm) => farm.multiplier === '0X' && !isArchivedPid(farm.pid))
-  const inactiveFarms = farmsLP.filter(farm => {
+  const inactiveFarms = farmsLP.filter((farm) => {
     if (kingdomMode) {
       return !!farm.isKingdom === !!kingdomMode && farm.multiplier === '0X' && !isArchivedPid(farm.pid)
     }
-    return !!farm.isTokenOnly === !!tokenMode && !!farm.isKingdom === !!kingdomMode && farm.multiplier === '0X' && !isArchivedPid(farm.pid)
+    return (
+      !!farm.isTokenOnly === !!tokenMode &&
+      !!farm.isKingdom === !!kingdomMode &&
+      farm.multiplier === '0X' &&
+      !isArchivedPid(farm.pid)
+    )
   })
   const archivedFarms = farmsLP.filter((farm) => isArchivedPid(farm.pid))
 
@@ -315,7 +324,7 @@ const Farms: React.FC<FarmsProps> = ({ tokenMode, kingdomMode }) => {
     const APR = getRoi({
       amountEarned: tokenEarnedPerThousand365D,
       amountInvested: 1000 / parseFloat(token.busdPrice),
-    }).toFixed(2);
+    }).toFixed(2)
 
     const row: RowProps = {
       apr: {
@@ -430,22 +439,27 @@ const Farms: React.FC<FarmsProps> = ({ tokenMode, kingdomMode }) => {
             <Heading as="h1" size="lg" color="primary" mb="20px" style={{ textAlign: 'left' }}>
               {heading}
             </Heading>
-            <br/>
+            <br />
             {/* extra */}
           </div>
 
-          <div className="column-cad" style={{height: "100%", display: "flex", flexDirection: "row", flexGrow: 1}}>
+          <div className="column-cad" style={{ height: '100%', display: 'flex', flexDirection: 'row', flexGrow: 1 }}>
             <AdditionalHeader />
-            <Card style={{height: "100%", flexGrow: 1, maxWidth: "400px", marginLeft: "auto", padding: "10px 20px"}}>
-                <Heading><HiveLogo /> Multi-Token Bridge</Heading>
+            <Card style={{ height: '100%', flexGrow: 1, maxWidth: '400px', marginLeft: 'auto', padding: '10px 20px' }}>
+              <Heading>
+                <HiveLogo /> Multi-Token Bridge
+              </Heading>
 
-                <hr />
+              <hr />
 
-                <p style={{marginBottom: "10px"}}>MTB Assets (HIVE and HBD) Can Be Wrapped and Utilized to Provide Liquidity and Earn High Yields. MTB Assets Generate Revenue Which Buys and Burns CUB Each Day</p>
+              <p style={{ marginBottom: '10px' }}>
+                MTB Assets (HIVE and HBD) Can Be Wrapped and Utilized to Provide Liquidity and Earn High Yields. MTB
+                Assets Generate Revenue Which Buys and Burns CUB Each Day
+              </p>
 
-                <Button className="button-cad">
-                  <a href="https://docs.cubdefi.com/mechanics/multi-token-bridge">How it Works</a>
-                </Button>
+              <Button className="button-cad">
+                <a href="https://docs.cubdefi.com/mechanics/multi-token-bridge">How it Works</a>
+              </Button>
             </Card>
           </div>
         </div>

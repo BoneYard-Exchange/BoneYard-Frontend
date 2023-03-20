@@ -33,7 +33,7 @@ export const getFarmApr = (
   cakePriceUsd: BigNumber,
   poolLiquidityUsd: BigNumber,
   isKingdom?: boolean,
-  farmType?: string
+  farmType?: string,
 ): number => {
   if (isKingdom) {
     let yearlyCakeRewardAllocation = PCSCAKE_PER_YEAR.times(poolWeight)

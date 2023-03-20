@@ -18,7 +18,8 @@ const BNBHarvestBalance = ({ bnbDividends }) => {
   const { account } = useWeb3React()
   const bnbPrice = useBusdPriceFromLpSymbol('BNB-BUSD LP')
 
-  const bnbRewards = bnbDividends && bnbDividends.amount ? new BigNumber(bnbDividends.amount).div(DEFAULT_TOKEN_DECIMAL) : BIG_ZERO
+  const bnbRewards =
+    bnbDividends && bnbDividends.amount ? new BigNumber(bnbDividends.amount).div(DEFAULT_TOKEN_DECIMAL) : BIG_ZERO
   const bnbRewardsUSD = bnbRewards ? bnbRewards.multipliedBy(bnbPrice).toNumber() : 0
 
   if (!account) {
@@ -31,8 +32,8 @@ const BNBHarvestBalance = ({ bnbDividends }) => {
 
   return (
     <Block>
-      <CardValue value={bnbRewards.toNumber()} lineHeight="1.5" />
-      {!bnbPrice.eq(0) && <CardBusdValue value={bnbRewardsUSD} />}
+      <CardValue value={bnbRewards?.toNumber()} lineHeight="1.5" />
+      {!bnbPrice?.eq(0) && <CardBusdValue value={bnbRewardsUSD} />}
     </Block>
   )
 }

@@ -203,7 +203,7 @@ const fetchFarms = async (farmsToFetch: FarmConfig[]) => {
 
         if (farmConfig.farmType === 'Belt') tokenAmount = new BigNumber(kingdomSupply)
 
-        if (farmConfig.token.symbol === 'BUSD' && farmConfig.quoteToken.symbol === 'BUSD') {
+        if (farmConfig.token.symbol === 'USDC' && farmConfig.quoteToken.symbol === 'USDC') {
           tokenPriceVsQuote = new BigNumber(1)
         } else {
           tokenPriceVsQuote = new BigNumber(quoteTokenBalanceLP).div(new BigNumber(tokenBalanceLP))

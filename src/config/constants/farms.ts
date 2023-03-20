@@ -347,6 +347,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 2,
+    pcsVersion: 2,
     lpSymbol: 'ETH-USDC LP (v2)',
     lpAddresses: {
       97: '',

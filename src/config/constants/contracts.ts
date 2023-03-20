@@ -27,6 +27,7 @@ export default {
   pcsV2masterChef: {
     56: '0x73feaa1eE314F8c655E354234017bE2193C9E24E',
     97: '',
+    5: '0x16C5E3639f9C31aC38380217D45865c2aA6910Ec',
   },
   bakery: {
     56: '0x20ec291bb8459b6145317e7126532ce7ece5056f',
