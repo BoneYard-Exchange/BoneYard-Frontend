@@ -45,11 +45,11 @@ const Ifo = () => {
       </IfoCards>
       <LaunchIfoCallout>
         <div>
-          <Title as="h2">{TranslateString(592, 'How to Participate in Decentralized IDOs on Boneyard Finance')}</Title>
+          <Title as="h2">{TranslateString(592, 'How to Participate in Decentralized IDOs on BoneYard Finance')}</Title>
           <Heading mb="16px">{TranslateString(594, 'Before IDO')}:</Heading>
           <List>
             <li>{TranslateString(596, 'Buy BOYD and BUSD Tokens')}</li>
-            <li>{TranslateString(598, 'Get BOYD-BUSD LP tokens (PCSv2 Only) on PancakeSwap')}</li>
+            <li>{TranslateString(598, 'Get BOYD-BUSD LP tokens (PCSv2 Only) on ShibariumSwap')}</li>
           </List>
           <Flex mb="16px">
             <LinkExternal href="https://exchange.cubdefi.com/" mr="16px">
