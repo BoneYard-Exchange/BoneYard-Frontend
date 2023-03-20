@@ -45,11 +45,11 @@ const Ifo = () => {
       </IfoCards>
       <LaunchIfoCallout>
         <div>
-          <Title as="h2">{TranslateString(592, 'How to Participate in Decentralized IDOs on Boneyard Finance')}</Title>
+          <Title as="h2">{TranslateString(592, 'How to Participate in Decentralized IDOs on BoneYard Finance')}</Title>
           <Heading mb="16px">{TranslateString(594, 'Before IDO')}:</Heading>
           <List>
             <li>{TranslateString(596, 'Buy BOYD and BUSD Tokens')}</li>
-            <li>{TranslateString(598, 'Get BOYD-BUSD LP tokens (PCSv2 Only) on PancakeSwap')}</li>
+            <li>{TranslateString(598, 'Get BOYD-BUSD LP tokens (PCSv2 Only) on ShibariumSwap')}</li>
           </List>
           <Flex mb="16px">
             <LinkExternal href="https://exchange.cubdefi.com/" mr="16px">
@@ -80,18 +80,18 @@ const Ifo = () => {
           </Text>
         </div>
         <div>
-          <Image src="/images/cub/wide.svg" alt="ifo bunny" width={436} height={406} responsive />
+          <Image src="/images/cub/BoneshibCharacter.png" alt="ifo bunny" width={436} height={406} responsive />
           <div>
             <Title as="h2">{TranslateString(512, 'Want to launch your own IDO?')}</Title>
             <Text mb={3}>
               {TranslateString(
                 514,
-                'Launch your project with BOYDefi to bring your token directly to the most active and rapidly growing community on BSC.',
+                'Launch your project with BOYDefi to bring your token directly to the most active and rapidly growing community on Shibarium.',
               )}
             </Text>
             <Button
               as="a"
-              href="https://forms.gle/qRRKAefPsh6D83Ys9"
+              href="https://forms.gle/Q2BBZE4BioxtD9TM9"
               external
             >
               {TranslateString(516, 'Apply to launch')}
