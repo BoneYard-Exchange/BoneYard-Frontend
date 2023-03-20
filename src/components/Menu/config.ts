@@ -1,4 +1,4 @@
-import { MenuEntry } from "@pancakeswap-libs/uikit";
+import { MenuEntry } from "@boneyard/uikit";
 
 const config: MenuEntry[] = [
   {
@@ -12,11 +12,11 @@ const config: MenuEntry[] = [
     items: [
       {
         label: 'Exchange',
-        href: 'https://pancakeswap.finance/swap?outputCurrency=0x50d809c74e0b8e49e7b4c65bb3109abe3ff4c1c1',
+        href: 'https://app.uniswap.org/#/swap',
       },
       {
         label: 'Liquidity',
-        href: 'https://pancakeswap.finance/add/0xe9e7cea3dedca5984780bafc599bd69add087d56/0x50d809c74e0b8e49e7b4c65bb3109abe3ff4c1c1',
+        href: 'https://app.uniswap.org/#/pool',
       },
     ],
   },

@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 import { variant as systemVariant, space } from "styled-system";
-import {TextProps, Text} from "@pancakeswap-libs/uikit";
+import {TextProps, Text} from "@boneyard/uikit";
 
 export interface MessageProps {
     variant: Variant;

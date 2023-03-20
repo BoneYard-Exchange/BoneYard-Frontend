@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Heading, Button } from '@pancakeswap-libs/uikit'
+import { Heading, Button } from '@boneyard/uikit'
 import Container from 'components/layout/Container'
 import useI18n from 'hooks/useI18n'
 

@@ -1,7 +1,7 @@
 import React, { useEffect, lazy } from 'react'
 // import { Router, Redirect, Route, Switch } from 'react-router-dom'
 import { Router, Route, Switch } from 'react-router-dom'
-import { ResetCSS } from '@pancakeswap-libs/uikit'
+import { ResetCSS } from '@boneyard/uikit'
 import BigNumber from 'bignumber.js'
 import useEagerConnect from 'hooks/useEagerConnect'
 import { useFetchProfile, useFetchPublicData } from 'state/hooks'

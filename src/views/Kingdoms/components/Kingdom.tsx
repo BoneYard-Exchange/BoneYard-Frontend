@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Text, Image, Flex } from '@pancakeswap-libs/uikit'
+import { Text, Image, Flex } from '@boneyard/uikit'
 import BigNumber from 'bignumber.js'
 import styled, { keyframes } from 'styled-components'
 import { getBalanceNumber } from 'utils/formatBalance'

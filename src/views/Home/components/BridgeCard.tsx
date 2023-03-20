@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Heading, Card, CardBody, Flex, ArrowForwardIcon, Link } from '@pancakeswap-libs/uikit'
+import { Heading, Card, CardBody, Flex, ArrowForwardIcon, Link } from '@boneyard/uikit'
 
 const StyledFarmStakingCard = styled(Card)`
   background: linear-gradient(#53dee9, #4576d9);

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Svg} from "@pancakeswap-libs/uikit";
+import {Svg} from "@boneyard/uikit";
 
 function AdditionalHeader() {
     return (<style>

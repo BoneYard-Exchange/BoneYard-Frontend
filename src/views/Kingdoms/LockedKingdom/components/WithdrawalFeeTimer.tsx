@@ -1,5 +1,5 @@
 import getTimePeriods from 'utils/getTimePeriods'
-import {Text} from '@pancakeswap-libs/uikit'
+import {Text} from '@boneyard/uikit'
 import React from 'react'
 
 const WithdrawalFeeTimer: React.FC<React.PropsWithChildren<{ secondsRemaining: number }>> = ({ secondsRemaining }) => {

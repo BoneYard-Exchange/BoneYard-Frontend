@@ -11,7 +11,7 @@ import {
   Flex,
   NotificationDot,
   Link as UiKitLink,
-} from '@pancakeswap-libs/uikit'
+} from '@boneyard/uikit'
 import useI18n from 'hooks/useI18n'
 
 const ButtonText = styled(Text)`

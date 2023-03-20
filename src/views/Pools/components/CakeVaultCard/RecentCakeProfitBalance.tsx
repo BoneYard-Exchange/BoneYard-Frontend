@@ -1,6 +1,6 @@
 import React from 'react'
 import BigNumber from 'bignumber.js'
-import { Text, useTooltip } from '@pancakeswap-libs/uikit'
+import { Text, useTooltip } from '@boneyard/uikit'
 import { getFullDisplayBalance } from 'utils/formatBalance'
 import useI18n from 'hooks/useI18n'
 import { convertSharesToCake } from '../../helpers'

@@ -1,6 +1,6 @@
 import React from 'react'
 import BigNumber from 'bignumber.js'
-import { Flex, Text } from '@pancakeswap-libs/uikit'
+import { Flex, Text } from '@boneyard/uikit'
 import useI18n from 'hooks/useI18n'
 import RecentCakeProfitBalance from './RecentCakeProfitBalance'
 

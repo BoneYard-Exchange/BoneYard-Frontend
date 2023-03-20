@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useModal, Button, Text } from '@pancakeswap-libs/uikit'
+import { useModal, Button, Text } from '@boneyard/uikit'
 import { useWeb3React } from '@web3-react/core'
 import BigNumber from 'bignumber.js'
 import { Contract } from 'web3-eth-contract'

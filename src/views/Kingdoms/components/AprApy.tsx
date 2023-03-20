@@ -1,6 +1,6 @@
 import React from 'react'
 import BigNumber from 'bignumber.js'
-import { Text, Flex, Skeleton } from '@pancakeswap-libs/uikit'
+import { Text, Flex, Skeleton } from '@boneyard/uikit'
 import Balance from 'components/Balance'
 
 import ApyButton from 'views/Farms/components/FarmCard/ApyButton'

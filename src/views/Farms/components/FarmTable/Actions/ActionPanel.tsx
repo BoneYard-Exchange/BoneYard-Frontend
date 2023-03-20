@@ -1,7 +1,7 @@
 import React from 'react'
 import styled, { keyframes, css } from 'styled-components'
 import useI18n from 'hooks/useI18n'
-import { LinkExternal, Text, Flex } from '@pancakeswap-libs/uikit'
+import { LinkExternal, Text, Flex } from '@boneyard/uikit'
 import { BASE_ADD_LIQUIDITY_URL, PCS_ADD_LIQUIDITY_URL } from 'config'
 import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'

@@ -1,7 +1,7 @@
 import React, {useMemo} from 'react'
 import BigNumber from 'bignumber.js'
 import styled from 'styled-components'
-import { Link, Flex, Text } from '@pancakeswap-libs/uikit'
+import { Link, Flex, Text } from '@boneyard/uikit'
 import { DEFAULT_TOKEN_DECIMAL, BAKERY_ADD_LIQUIDITY_URL, PCS_ADD_LIQUIDITY_URL, PCS_EXCHANGE_URL, BELT_EXCHANGE } from 'config'
 import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'

@@ -2,7 +2,7 @@ import React from 'react'
 import BigNumber from 'bignumber.js'
 import styled from 'styled-components'
 import Balance from 'components/Balance'
-import { Flex, Text } from '@pancakeswap-libs/uikit'
+import { Flex, Text } from '@boneyard/uikit'
 import useTotalStaked from '../hooks/useTotalStaked';
 
 const Wrapper = styled.div`

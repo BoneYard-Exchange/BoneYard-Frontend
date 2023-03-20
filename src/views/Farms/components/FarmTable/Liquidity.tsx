@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { HelpIcon, Text, Skeleton, useTooltip } from '@pancakeswap-libs/uikit'
+import { HelpIcon, Text, Skeleton, useTooltip } from '@boneyard/uikit'
 import useI18n from 'hooks/useI18n'
 import BigNumber from 'bignumber.js'
 
