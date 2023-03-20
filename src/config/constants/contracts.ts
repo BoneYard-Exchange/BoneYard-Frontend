@@ -1,20 +1,24 @@
 export default {
   cake: {
     56: '0x50d809c74e0b8e49e7b4c65bb3109abe3ff4c1c1',
-    666: 'This is CUB token',
+    666: 'This is BOYD token',
     97: '',
+    5: '0x4B00c8c4F6A1eD1c476c060D32cEA97d61d23113',
   },
   masterChef: {
     56: '0x227e79c83065edb8b954848c46ca50b96cb33e16',
     97: '',
+    5: '0x09Db4ea44205a3727a0b5aA3Be97DAebf4350762',
   },
   kingdoms: {
     56: '0x2e72f4b196b9e5b89c29579cc135756a00e6cbbd',
     97: '',
+    5: '0x226E3C40b903f7977cF59335Bed85ec58cdEB0E9',
   },
   lockedKingdoms: {
     56: '0x08bea2702d89abb8059853d654d0838c5e06fe0b',
     97: '',
+    5: '0xCd1B9b0D9fF19aB3658fFdC3724ae4b18D391946',
   },
   bnbDividends: {
     56: '0xa22efc88F3Eb641D881D0807dc8E305d71920cAB',
@@ -47,6 +51,7 @@ export default {
   multiCall: {
     56: '0x1ee38d535d541c55c9dae27b12edf090c608e6fb',
     97: '0x67ADCB4dF3931b0C5Da724058ADC2174a9844412',
+    5: '0x1b5Ac137016f10599B74C89471BBfb2F84e1B41D',
   },
   busd: {
     56: '0xe9e7cea3dedca5984780bafc599bd69add087d56',
@@ -101,5 +106,4 @@ export default {
     56: '',
     97: '',
   },
-
 }

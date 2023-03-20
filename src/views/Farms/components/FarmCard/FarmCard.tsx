@@ -14,7 +14,7 @@ import DetailsSection from './DetailsSection'
 import CardHeading from './CardHeading'
 import CardActionsContainer from './CardActionsContainer'
 import ApyButton from './ApyButton'
-import {getRoi, tokenEarnedPerThousandDollarsCompounding} from "../../../../utils/compoundApyHelpers";
+import { getRoi, tokenEarnedPerThousandDollarsCompounding } from '../../../../utils/compoundApyHelpers'
 
 export interface FarmWithStakedValue extends Farm {
   apr?: number
@@ -26,19 +26,19 @@ export interface FarmWithStakedValue extends Farm {
   compounding?: number
   kingdomSupply?: string
   quoteTokenPriceUsd?: number
-  beltAPR?:string
+  beltAPR?: string
   lockedKingdomData?: {
-      totalShares: string
-      totalLockedAmount: string
-      pricePerFullShare: string
-      totalBalance: string
-      fees: {
-          performanceFee: string
-          withdrawalFee: string
-          withdrawalFeePeriod: string
-      }
+    totalShares: string
+    totalLockedAmount: string
+    pricePerFullShare: string
+    totalBalance: string
+    fees: {
+      performanceFee: string
+      withdrawalFee: string
+      withdrawalFeePeriod: string
+    }
   }
-  beltRate?:string
+  beltRate?: string
 }
 
 const RainbowLight = keyframes`
@@ -122,12 +122,13 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, account }
   // NAR-CAKE LP. The images should be cake-bnb.svg, link-bnb.svg, nar-cake.svg
   const farmImage = farm.lpSymbol.split(' ')[0].toLocaleLowerCase()
 
-  const totalValueFormatted = farm.liquidity && farm.liquidity.toNumber()
-    ? `$${farm.liquidity.toNumber().toLocaleString(undefined, { maximumFractionDigits: 0 })}`
-    : '-'
+  const totalValueFormatted =
+    farm.liquidity && farm.liquidity.toNumber()
+      ? `$${farm.liquidity.toNumber().toLocaleString(undefined, { maximumFractionDigits: 0 })}`
+      : '-'
 
   const lpLabel = farm.lpSymbol && farm.lpSymbol.toUpperCase().replace('PANCAKE', '')
-  const earnLabel = farm.dual ? farm.dual.earnLabel : 'CUB'
+  const earnLabel = farm.dual ? farm.dual.earnLabel : 'BOYD'
 
   const farmAPR = farm.apr && farm.apr.toLocaleString('en-US', { maximumFractionDigits: 2 })
 
@@ -139,22 +140,22 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, account }
   const addLiquidityUrl = `${exchangeUrl}/${liquidityUrlPathParts}`
   const lpAddress = farm.lpAddresses[process.env.REACT_APP_CHAIN_ID]
 
-    const tokenEarnedPerThousand365D = tokenEarnedPerThousandDollarsCompounding({
-        numberOfDays: 365,
-        farmApr: farm.apr,
-        tokenPrice: farm.token.busdPrice,
-        roundingDecimals: 2,
-        compoundFrequency: 1,
-    })
+  const tokenEarnedPerThousand365D = tokenEarnedPerThousandDollarsCompounding({
+    numberOfDays: 365,
+    farmApr: farm.apr,
+    tokenPrice: farm.token.busdPrice,
+    roundingDecimals: 2,
+    compoundFrequency: 1,
+  })
 
-    const APR = getRoi({
-        amountEarned: tokenEarnedPerThousand365D,
-        amountInvested: 1000 / parseFloat(farm.token.busdPrice),
-    }).toFixed(2);
-
+  const APR = getRoi({
+    amountEarned: tokenEarnedPerThousand365D,
+    amountInvested: 1000 / parseFloat(farm.token.busdPrice),
+  }).toFixed(2)
+  console.log(farm)
   return (
     <FCard>
-      {farm.token.symbol === 'CUB' && <StyledCardAccent />}
+      {farm.token.symbol === 'BOYD' && <StyledCardAccent />}
       <CardHeading
         lpLabel={lpLabel}
         multiplier={farm.multiplier}
@@ -177,21 +178,20 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, account }
             )}
           </Text>
         </Flex>
-        )
-      }
+      )}
       <Flex justifyContent="space-between">
         <Text>{TranslateString(318, 'Earn')}:</Text>
         <Text bold>{earnLabel}</Text>
       </Flex>
-      <Flex justifyContent='space-between'>
+      <Flex justifyContent="space-between">
         <Text style={{ fontSize: '16px' }}>{TranslateString(10001, 'Deposit Fee')}:</Text>
-        {
-          farm.depositFeeBP ? (
-            <Text bold style={{ fontSize: '16px' }}>{(farm.depositFeeBP / 100)}%</Text>
-          ) : (
-            '0%'
-          )
-        }
+        {farm.depositFeeBP ? (
+          <Text bold style={{ fontSize: '16px' }}>
+            {farm.depositFeeBP / 100}%
+          </Text>
+        ) : (
+          '0%'
+        )}
       </Flex>
       <CardActionsContainer farm={farm} account={account} addLiquidityUrl={addLiquidityUrl} />
       <Divider />
@@ -204,10 +204,9 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, account }
           removed={removed}
           // bscScanAddress={`https://bscscan.com/address/${farm.lpAddresses[process.env.REACT_APP_CHAIN_ID]}`}
           bscScanAddress={
-            farm.isTokenOnly ?
-              `https://bscscan.com/token/${farm.token.address[process.env.REACT_APP_CHAIN_ID]}`
-              :
-              `https://bscscan.com/token/${farm.lpAddresses[process.env.REACT_APP_CHAIN_ID]}`
+            farm.isTokenOnly
+              ? `https://bscscan.com/token/${farm.token.address[process.env.REACT_APP_CHAIN_ID]}`
+              : `https://bscscan.com/token/${farm.lpAddresses[process.env.REACT_APP_CHAIN_ID]}`
           }
           infoAddress={`https://pancakeswap.info/pair/${lpAddress}`}
           totalValueFormatted={totalValueFormatted}

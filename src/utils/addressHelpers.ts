@@ -9,13 +9,13 @@ export const getAddress = (address: Address): string => {
 }
 
 export const getCakeAddress = () => {
-  return getAddress(tokens.cub.address)
+  return getAddress(tokens.cake.address)
 }
 export const getMasterChefAddress = () => {
   return getAddress(addresses.masterChef)
 }
 export const getLockedKingdomsAddress = () => {
-  return getAddress(addresses.lockedKingdoms);
+  return getAddress(addresses.lockedKingdoms)
 }
 export const getKingdomsAddress = () => {
   return getAddress(addresses.kingdoms)
@@ -36,7 +36,7 @@ export const getMulticallAddress = () => {
   return getAddress(addresses.multiCall)
 }
 export const getWbnbAddress = () => {
-  return getAddress(tokens.wbnb.address)
+  return getAddress(tokens.weth.address)
 }
 export const getLotteryAddress = () => {
   return getAddress(addresses.lottery)

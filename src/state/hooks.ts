@@ -240,7 +240,7 @@ export const usePriceCakeBusd = (): BigNumber => {
   //
   // const cakeBusdPrice = cakeBnbFarm.tokenPriceVsQuote ? bnbBusdPrice.times(cakeBnbFarm.tokenPriceVsQuote) : BIG_ZERO
 
-  const cakeBusdPrice = cakeBnbFarm.tokenPriceVsQuote ? new BigNumber(cakeBnbFarm.tokenPriceVsQuote) : BIG_ZERO
+  const cakeBusdPrice = cakeBnbFarm?.tokenPriceVsQuote ? new BigNumber(cakeBnbFarm?.tokenPriceVsQuote) : BIG_ZERO
 
   return cakeBusdPrice
 }
@@ -368,70 +368,86 @@ export const useGetCollectibles = () => {
 }
 
 export const useTotalValue = (): BigNumber => {
-  const farms = useFarms();
-  let value = new BigNumber(0);
+  const farms = useFarms()
+  let value = new BigNumber(0)
 
   value = farms.data.reduce((accu, farm) => {
     const quoteTokenPriceUsd = farm.quoteToken.busdPrice
     const totalLiquidity = new BigNumber(farm.lpTotalInQuoteToken).times(quoteTokenPriceUsd)
     let newAccu = accu
-    if (totalLiquidity.gt(0))
-      newAccu = accu.plus(totalLiquidity)
+    if (totalLiquidity.gt(0)) newAccu = accu.plus(totalLiquidity)
     return newAccu
   }, value)
 
-  return value;
+  return value
 }
 
 export const useTotalValueKingdoms = (): BigNumber => {
-  const farms = useFarms();
-  let value = new BigNumber(0);
+  const farms = useFarms()
+  let value = new BigNumber(0)
 
-  const kingdoms = farms.data.filter(farm => farm.isKingdom)
+  const kingdoms = farms.data.filter((farm) => farm.isKingdom)
 
   value = kingdoms.reduce((accu, farm) => {
     const quoteTokenPriceUsd = farm.quoteToken.busdPrice
     const totalLiquidity = new BigNumber(farm.lpTotalInQuoteToken).times(quoteTokenPriceUsd)
     let newAccu = accu
-    if (totalLiquidity.gt(0))
-      newAccu = accu.plus(totalLiquidity)
+    if (totalLiquidity.gt(0)) newAccu = accu.plus(totalLiquidity)
     return newAccu
   }, value)
 
-  return value;
+  return value
 }
-
 
 export const useTotalCubStaked = (): any => {
   const farms = useFarms()
   let total = { cub: new BigNumber(0), value: new BigNumber(0) }
 
-  const cubFarms = farms.data.filter(farm => farm.token.symbol === 'CUB' && new BigNumber(farm.userData.stakedBalance).gt(0))
+  const cubFarms = farms.data.filter(
+    (farm) => farm.token.symbol === 'CUB' && new BigNumber(farm.userData.stakedBalance).gt(0),
+  )
 
   total = cubFarms.reduce((accu, farm) => {
     let newAccu = accu
 
-    const { userData, lpTotalInQuoteToken, lpTokenBalance, quoteToken: { busdPrice: quoteTokenPriceUsd }, token: { busdPrice: tokenPriceString } } = farm
+    const {
+      userData,
+      lpTotalInQuoteToken,
+      lpTokenBalance,
+      quoteToken: { busdPrice: quoteTokenPriceUsd },
+      token: { busdPrice: tokenPriceString },
+    } = farm
     const { stakedBalance } = userData
-    const stakedAmount = new BigNumber(stakedBalance);
+    const stakedAmount = new BigNumber(stakedBalance)
 
-    const tokenPrice = new BigNumber(tokenPriceString);
+    const tokenPrice = new BigNumber(tokenPriceString)
     let oneTokenQuoteValue = new BigNumber(0)
 
     if (!farm.isTokenOnly && !farm.isKingdomToken)
-      oneTokenQuoteValue = lpTotalInQuoteToken ? new BigNumber(lpTotalInQuoteToken).div(new BigNumber(lpTokenBalance)).times(quoteTokenPriceUsd).times(DEFAULT_TOKEN_DECIMAL) : new BigNumber(0)
+      oneTokenQuoteValue = lpTotalInQuoteToken
+        ? new BigNumber(lpTotalInQuoteToken)
+            .div(new BigNumber(lpTokenBalance))
+            .times(quoteTokenPriceUsd)
+            .times(DEFAULT_TOKEN_DECIMAL)
+        : new BigNumber(0)
     else oneTokenQuoteValue = tokenPrice.times(DEFAULT_TOKEN_DECIMAL)
 
     const totalValueStaked = stakedAmount.times(oneTokenQuoteValue).div(DEFAULT_TOKEN_DECIMAL)
     const totalCubValue = !farm.isTokenOnly && !farm.isKingdomToken ? totalValueStaked.div(2) : totalValueStaked
-    const amountCubTokens = !farm.isTokenOnly && !farm.isKingdomToken ? totalCubValue.div(tokenPrice) : totalCubValue.div(oneTokenQuoteValue).times(DEFAULT_TOKEN_DECIMAL)
+    const amountCubTokens =
+      !farm.isTokenOnly && !farm.isKingdomToken
+        ? totalCubValue.div(tokenPrice)
+        : totalCubValue.div(oneTokenQuoteValue).times(DEFAULT_TOKEN_DECIMAL)
 
     // console.log('oneTokenQuoteValue',oneTokenQuoteValue.div(DEFAULT_TOKEN_DECIMAL).toNumber())
     // console.log('totalValueStaked',totalValueStaked.div(DEFAULT_TOKEN_DECIMAL).toNumber())
     // console.log('totalCubValue',totalCubValue.div(DEFAULT_TOKEN_DECIMAL).toNumber())
     // console.log('amountCubTokens',amountCubTokens.div(DEFAULT_TOKEN_DECIMAL).toNumber())
 
-    newAccu = { cub: newAccu.cub.plus(amountCubTokens.div(DEFAULT_TOKEN_DECIMAL)), value: newAccu.value.plus(totalCubValue.div(DEFAULT_TOKEN_DECIMAL)) }
+    newAccu = {
+      cub: newAccu.cub.plus(amountCubTokens.div(DEFAULT_TOKEN_DECIMAL)),
+      value: newAccu.value.plus(totalCubValue.div(DEFAULT_TOKEN_DECIMAL)),
+    }
     // console.log('newAccu', newAccu)
     return newAccu
   }, total)

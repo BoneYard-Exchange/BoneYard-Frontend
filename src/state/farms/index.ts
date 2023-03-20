@@ -12,7 +12,7 @@ import {
   fetchFarmUserStakedBalances,
 } from './fetchFarmUser'
 import { FarmsState, Farm } from '../types'
-import {fetchLockedKingdomUserData} from "../../views/Kingdoms/LockedKingdom/poolHelpers";
+import { fetchLockedKingdomUserData } from '../../views/Kingdoms/LockedKingdom/poolHelpers'
 
 const nonArchivedFarms = farmsConfig.filter(({ pid }) => !isArchivedPid(pid))
 
@@ -34,8 +34,8 @@ export const farmsSlice = createSlice({
   reducers: {
     setFarmsPublicData: (state, action) => {
       const liveFarmsData: Farm[] = action.payload
-      state.data = state.data.map(farm => {
-        const liveFarmData = liveFarmsData.find(f => f.pid === farm.pid && f.isKingdom === farm.isKingdom)
+      state.data = state.data.map((farm) => {
+        const liveFarmData = liveFarmsData.find((f) => f.pid === farm.pid && f.isKingdom === farm.isKingdom)
         return { ...farm, ...liveFarmData }
       })
     },
@@ -45,7 +45,7 @@ export const farmsSlice = createSlice({
       arrayOfUserDataObjects.forEach((userDataEl) => {
         const { pid, isKingdom, lpSymbol } = userDataEl
         const index = state.data.findIndex((farm) => farm.pid === pid && isKingdom === farm.isKingdom)
-        if (isKingdom && lpSymbol === 'CUB') state.data[index] = { ...state.data[index], userData: { ...userDataEl }}
+        if (isKingdom && lpSymbol === 'BOYD') state.data[index] = { ...state.data[index], userData: { ...userDataEl } }
         else state.data[index] = { ...state.data[index], userData: userDataEl }
       })
       state.userDataLoaded = true
@@ -72,12 +72,17 @@ export const fetchFarmsPublicDataAsync = () => async (dispatch, getState) => {
     if (farm.farmType === 'Belt') {
       let tokenPrice = new BigNumber(0)
       if (farm.lpSymbol !== '4belt') {
-
-        tokenPrice = farm.quoteToken.busdPrice ? new BigNumber(farm.tokenValuePerOrigin).times(farm.quoteToken.busdPrice) : new BigNumber(0)
+        tokenPrice = farm.quoteToken.busdPrice
+          ? new BigNumber(farm.tokenValuePerOrigin).times(farm.quoteToken.busdPrice)
+          : new BigNumber(0)
       } else {
         tokenPrice = new BigNumber(farm.beltRate)
       }
-      const updatedFarm = { ...farm, lpTotalInQuoteToken:  farm.tokenAmount, token: { ...farm.token, busdPrice: tokenPrice.toString() } }
+      const updatedFarm = {
+        ...farm,
+        lpTotalInQuoteToken: farm.tokenAmount,
+        token: { ...farm.token, busdPrice: tokenPrice.toString() },
+      }
 
       return updatedFarm
     }
@@ -92,12 +97,11 @@ export const fetchFarmUserDataAsync = (account: string) => async (dispatch, getS
   try {
     const fetchArchived = getState().farms.loadArchivedFarmsData
     const farmsToFetch = fetchArchived ? farmsConfig : nonArchivedFarms
-    const lockedKingdomUserData = await fetchLockedKingdomUserData(account);
+    const lockedKingdomUserData = await fetchLockedKingdomUserData(account)
     const userFarmAllowances = await fetchFarmUserAllowances(account, farmsToFetch)
     const userFarmTokenBalances = await fetchFarmUserTokenBalances(account, farmsToFetch)
     const userStakedBalances = await fetchFarmUserStakedBalances(account, farmsToFetch)
     const userFarmEarnings = await fetchFarmUserEarnings(account, farmsToFetch)
-
     const arrayOfUserDataObjects = userFarmAllowances.map((farmAllowance, index) => {
       if (farmsToFetch[index].isKingdomLocked) {
         return {
@@ -123,7 +127,7 @@ export const fetchFarmUserDataAsync = (account: string) => async (dispatch, getS
       }
     })
 
-    dispatch(setFarmUserData({arrayOfUserDataObjects}))
+    dispatch(setFarmUserData({ arrayOfUserDataObjects }))
   } catch (error) {
     console.error(error)
   }

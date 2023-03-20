@@ -4,6 +4,7 @@ import BigNumber from 'bignumber.js'
 export interface Address {
   97?: string
   56: string
+  5?: string
 }
 
 export interface Token {
