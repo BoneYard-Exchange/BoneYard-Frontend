@@ -60,10 +60,10 @@ const config: MenuEntry[] = [
     items: [
       {
         label: 'GitHub',
-        href: 'https://github.com/CubFinance',
+        href: 'https://github.com/BoneYard-Exchange',
       },
       {
-        label: 'PancakeSwap',
+        label: 'ShibariumSwap',
         href: 'https://pancakeswap.info/token/0x50d809c74e0b8e49e7b4c65bb3109abe3ff4c1c1',
       },
       {
@@ -83,12 +83,12 @@ const config: MenuEntry[] = [
   {
     label: 'Docs',
     icon: 'TicketIcon',
-    href: 'https://docs.cubdefi.com/',
+    href: 'https://johns-organization-20.gitbook.io/boyd-token/',
   },
   {
     label: 'Roadmap',
     icon: 'MoreIcon',
-    href: 'https://docs.cubdefi.com/roadmap',
+    href: 'https://johns-organization-20.gitbook.io/boyd-token/roadmap',
   },
   {
     label: "Tokenized Blogging",

@@ -1,44 +1,44 @@
 import { PageMeta } from './types'
 
 export const DEFAULT_META: PageMeta = {
-  title: 'Cub Finance',
+  title: 'BoneYard Finance',
   description:
-    'The most popular AMM on BSC by user count! Earn CAKE through yield farming or win it in the Lottery, then stake it in Syrup Pools to earn more tokens! Initial Farm Offerings (new token launch model pioneered by Cub Finance), NFTs, and more, on a platform you can trust.',
-  image: 'https://cubdefi.com/images/2logos',
+    'The most popular AMM on Shibarium by user count! Earn BOYD through yield farming, then stake it in Syrup Pools to earn more tokens! Initial Farm Offerings (new token launch model pioneered by BoneYard Finance), NFTs, and more, on a platform you can trust.',
+  image: './images/2logos',
 }
 
 export const customMeta: { [key: string]: PageMeta } = {
   '/': {
-    title: 'Home | Cub Finance',
+    title: 'Home | BoneYard Finance',
   },
   '/competition': {
-    title: 'Trading Battle | Cub Finance',
+    title: 'Trading Battle | BoneYard Finance',
   },
   '/prediction': {
-    title: 'Prediction | Cub Finance',
+    title: 'Prediction | BoneYard Finance',
   },
   '/farms': {
-    title: 'Farms | Cub Finance',
+    title: 'Farms | BoneYard Finance',
   },
   '/pools': {
-    title: 'Pools | Cub Finance',
+    title: 'Pools | BoneYard Finance',
   },
   '/lottery': {
-    title: 'Lottery | Cub Finance',
+    title: 'Lottery | BoneYard Finance',
   },
   '/collectibles': {
-    title: 'Collectibles | Cub Finance',
+    title: 'Collectibles | BoneYard Finance',
   },
   '/ido': {
-    title: 'Initial DEX Offering | Cub Finance',
+    title: 'Initial DEX Offering | BoneYard Finance',
   },
   '/teams': {
-    title: 'Leaderboard | Cub Finance',
+    title: 'Leaderboard | BoneYard Finance',
   },
   '/profile/tasks': {
-    title: 'Task Center | Cub Finance',
+    title: 'Task Center | BoneYard Finance',
   },
   '/profile': {
-    title: 'Your Profile | Cub Finance',
+    title: 'Your Profile | BoneYard Finance',
   },
 }
