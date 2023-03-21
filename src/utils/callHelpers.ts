@@ -2,8 +2,8 @@ import BigNumber from 'bignumber.js'
 import { DEFAULT_TOKEN_DECIMAL } from 'config'
 import { ethers } from 'ethers'
 import { BIG_TEN, BIG_ZERO } from './bigNumber'
-import {useLockedKingdom} from "../hooks/useContract";
-import useGetVaultUserInfo from "../hooks/cakeVault/useGetVaultUserInfo";
+import { useLockedKingdom } from '../hooks/useContract'
+import useGetVaultUserInfo from '../hooks/cakeVault/useGetVaultUserInfo'
 
 export const approve = async (lpContract, masterChefContract, account) => {
   return lpContract.methods
@@ -21,12 +21,12 @@ export const stake = async (masterChefContract, pid, amount, account) => {
 }
 
 export const stakeLocked = async (lockedKingdomContract, amount, account, lockDuration = 0) => {
-    return lockedKingdomContract.methods
-        .deposit(new BigNumber(amount).times(DEFAULT_TOKEN_DECIMAL).toString(), lockDuration)
-        .send({ from: account })
-        .on('transactionHash', (tx) => {
-            return tx.transactionHash
-        })
+  return lockedKingdomContract.methods
+    .deposit(new BigNumber(amount).times(DEFAULT_TOKEN_DECIMAL).toString(), lockDuration)
+    .send({ from: account })
+    .on('transactionHash', (tx) => {
+      return tx.transactionHash
+    })
 }
 
 export const sousStake = async (sousChefContract, amount, decimals = 18, account) => {
@@ -57,30 +57,30 @@ export const unstake = async (masterChefContract, pid, amount, account) => {
 }
 
 export const unstakeLocked = async (masterChefContract, shares, account) => {
-    return masterChefContract.methods
-        .withdraw(shares)
-        .send({ from: account })
-        .on('transactionHash', (tx) => {
-            return tx.transactionHash
-        })
+  return masterChefContract.methods
+    .withdraw(shares)
+    .send({ from: account })
+    .on('transactionHash', (tx) => {
+      return tx.transactionHash
+    })
 }
 
 export const unstakeAllLocked = async (masterChefContract, account) => {
-    return masterChefContract.methods
-        .withdrawAll()
-        .send({ from: account })
-        .on('transactionHash', (tx) => {
-            return tx.transactionHash
-        })
+  return masterChefContract.methods
+    .withdrawAll()
+    .send({ from: account })
+    .on('transactionHash', (tx) => {
+      return tx.transactionHash
+    })
 }
 
 export const convertLockedToFlexible = async (masterChefContract, account) => {
-    return masterChefContract.methods
-        .unlock(account)
-        .send({ from: account })
-        .on('transactionHash', (tx) => {
-            return tx.transactionHash
-        })
+  return masterChefContract.methods
+    .unlock(account)
+    .send({ from: account })
+    .on('transactionHash', (tx) => {
+      return tx.transactionHash
+    })
 }
 
 export const sousUnstake = async (sousChefContract, amount, decimals = 18, account) => {

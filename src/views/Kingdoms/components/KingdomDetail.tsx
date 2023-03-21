@@ -2,7 +2,13 @@ import React from 'react'
 import BigNumber from 'bignumber.js'
 import styled from 'styled-components'
 import { Link, Flex, Text } from '@boneyard/uikit'
-import { DEFAULT_TOKEN_DECIMAL, BAKERY_ADD_LIQUIDITY_URL, PCS_ADD_LIQUIDITY_URL, PCS_EXCHANGE_URL, BELT_EXCHANGE } from 'config'
+import {
+  DEFAULT_TOKEN_DECIMAL,
+  BAKERY_ADD_LIQUIDITY_URL,
+  PCS_ADD_LIQUIDITY_URL,
+  PCS_EXCHANGE_URL,
+  BELT_EXCHANGE,
+} from 'config'
 import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
 import KingdomCard from './KingdomCard'
@@ -26,10 +32,10 @@ const Detail = styled.div`
     padding: 2px;
   }*/
   &:nth-child(1) {
-    width: 25%
+    width: 25%;
   }
   &:nth-child(2) {
-    width: 33%
+    width: 33%;
   }
 `
 
@@ -79,10 +85,12 @@ const KingdomDetail: React.FC<KingdomDetailProps> = ({
   cakePrice,
   bnbDividends,
 }) => {
-  const tokenValueFormated = oneTokenQuoteValue && oneTokenQuoteValue.toString() !== 'NaN'
-    ? `~$${oneTokenQuoteValue.times(DEFAULT_TOKEN_DECIMAL).toFixed(2)}`
-    : '-'
-  const { lpSymbol, multiplier, quoteToken, token, lpAddresses, isTokenOnly, isKingdomToken, kingdomContract, altPid } = farm
+  const tokenValueFormated =
+    oneTokenQuoteValue && oneTokenQuoteValue.toString() !== 'NaN'
+      ? `~$${oneTokenQuoteValue.times(DEFAULT_TOKEN_DECIMAL).toFixed(2)}`
+      : '-'
+  const { lpSymbol, multiplier, quoteToken, token, lpAddresses, isTokenOnly, isKingdomToken, kingdomContract, altPid } =
+    farm
   const lpLabel = lpSymbol && lpSymbol.toUpperCase().replace('PANCAKE', '')
   const liquidityUrlPathParts = getLiquidityUrlPathParts({
     quoteTokenAddress: quoteToken.address,
@@ -93,21 +101,20 @@ const KingdomDetail: React.FC<KingdomDetailProps> = ({
   const tokenAddress = token.address[process.env.REACT_APP_CHAIN_ID]
 
   const isToken = isTokenOnly || isKingdomToken
-  const farmContract= isToken ?
-    `https://bscscan.com/token/${tokenAddress}`
-    : `https://bscscan.com/token/${lpAddress}`
-  const vaultContract = `https://bscscan.com/address/${kingdomContract}`
-  let infoAddress = `https://pancakeswap.info/pair/${isTokenOnly ? tokenAddress : lpAddress}`
+  const farmContract = isToken
+    ? `https://goerli.etherscan.io/token/${tokenAddress}`
+    : `https://goerli.etherscan.io/token/${lpAddress}`
+  const vaultContract = `https://goerli.etherscan.io/address/${kingdomContract}`
+  let infoAddress = `https://v2.info.uniswap.org/pairs/${isTokenOnly ? tokenAddress : lpAddress}`
 
   let exchangeUrl = PCS_ADD_LIQUIDITY_URL
-  let buyTokenUrl = `${PCS_EXCHANGE_URL}/swap/${token.address['56']}`
+  let buyTokenUrl = `${PCS_EXCHANGE_URL}/swap/${token.address['5']}`
   let addLiquidityUrl = `${exchangeUrl}/${liquidityUrlPathParts}`
   if (farm.farmType === 'Bakery') {
     exchangeUrl = BAKERY_ADD_LIQUIDITY_URL
     addLiquidityUrl = `${exchangeUrl}/${liquidityUrlPathParts}`
     infoAddress = `https://info.bakeryswap.org/#/pair/${isTokenOnly ? tokenAddress : lpAddress}`
-  }
-  else if (farm.farmType === 'Belt') {
+  } else if (farm.farmType === 'Belt') {
     exchangeUrl = BELT_EXCHANGE
     addLiquidityUrl = exchangeUrl
     buyTokenUrl = exchangeUrl
@@ -156,15 +163,11 @@ const KingdomDetail: React.FC<KingdomDetailProps> = ({
           )}
         </Detail>
         <Detail>
-          <AprApy
-            aprApy={aprApy}
-            lpLabel={lpLabel}
-            addLiquidityUrl={addLiquidityUrl}
-          />
+          <AprApy aprApy={aprApy} lpLabel={lpLabel} addLiquidityUrl={addLiquidityUrl} />
         </Detail>
         <Detail>
           <StyledLinkExternal external href={farmContract}>Farm Contract</StyledLinkExternal>
-          <StyledLinkExternal external href={vaultContract}>Valuts Contract</StyledLinkExternal>
+          <StyledLinkExternal external href={vaultContract}>Vaults Contract</StyledLinkExternal>
           {!removed && (
             <>
               <StyledLinkExternal external href={buyTokenUrl}>
@@ -175,7 +178,9 @@ const KingdomDetail: React.FC<KingdomDetailProps> = ({
               </StyledLinkExternal>
             </>
           )}
-          <StyledLinkExternal external href={infoAddress}>See Token Info</StyledLinkExternal>
+          <StyledLinkExternal external href={infoAddress}>
+            See Token Info
+          </StyledLinkExternal>
         </Detail>
       </Details>
     </KDetail>

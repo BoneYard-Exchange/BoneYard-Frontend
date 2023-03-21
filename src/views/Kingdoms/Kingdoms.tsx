@@ -7,7 +7,13 @@ import { Heading, Toggle, Text, Flex } from '@boneyard/uikit'
 import styled from 'styled-components'
 // import FlexLayout from 'components/layout/Flex'
 import Page from 'components/layout/Page'
-import { useFarms, usePriceCakeBusd, useTotalValueKingdoms, useBusdPriceFromLpSymbol, useFarmFromPid } from 'state/hooks'
+import {
+  useFarms,
+  usePriceCakeBusd,
+  useTotalValueKingdoms,
+  useBusdPriceFromLpSymbol,
+  useFarmFromPid,
+} from 'state/hooks'
 import useRefresh from 'hooks/useRefresh'
 import { fetchFarmUserDataAsync } from 'state/actions'
 // import usePersistState from 'hooks/usePersistState'
@@ -30,7 +36,7 @@ import CardValue from './components/CardValue'
 import TotalStaked from './components/TotalStaked'
 import FarmTabButtons from './components/FarmTabButtons'
 import './Kingdoms.css'
-import LockedKingdom from "./LockedKingdom/components/LockedKingdom";
+import LockedKingdom from './LockedKingdom/components/LockedKingdom'
 
 const ControlContainer = styled.div`
   display: flex;
@@ -101,14 +107,14 @@ const NUMBER_OF_FARMS_VISIBLE = 20
 
 const Kingdoms: React.FC = () => {
   const { path } = useRouteMatch()
-  const totalValue = useTotalValueKingdoms();
+  const totalValue = useTotalValueKingdoms()
   const { pathname } = useLocation()
   const { data: farmsLP } = useFarms()
   const [query, setQuery] = useState('')
   const { account } = useWeb3React()
   const [sortOption, setSortOption] = useState('hot')
   const cakePrice = usePriceCakeBusd()
-  const realCakePrice = useBusdPriceFromLpSymbol('CAKE') || new BigNumber(0)
+  const realCakePrice = useBusdPriceFromLpSymbol('BOYD') || new BigNumber(0)
   const bakePrice = useBusdPriceFromLpSymbol('BAKE-BNB LP')
   const beltPrice = useBusdPriceFromLpSymbol('BELT-BNB LP')
   const cubDen = useFarmFromPid(12)
@@ -150,11 +156,11 @@ const Kingdoms: React.FC = () => {
     }
   }, [isArchived, dispatch, account])
 
-  const activeFarms = farmsLP.filter(farm => {
+  const activeFarms = farmsLP.filter((farm) => {
     return farm.isKingdom && !['0X', '0.0X'].includes(farm.multiplier) && !isArchivedPid(farm.pid)
   })
 
-  const inactiveFarms = farmsLP.filter(farm => {
+  const inactiveFarms = farmsLP.filter((farm) => {
     return farm.isKingdom && ['0X', '0.0X'].includes(farm.multiplier) && !isArchivedPid(farm.pid)
   })
 
@@ -276,24 +282,99 @@ const Kingdoms: React.FC = () => {
   const renderContent = (): JSX.Element => {
     return (
       <div>
-          <Route exact path={`${path}`}>
-            {farmsStakedMemoized.map((farm) => (
-                farm.isKingdomLocked ? <LockedKingdom  key={farm.pid} farm={farm} cakePrice={cakePrice} account={account} removed={false} bakePrice={bakePrice} beltPrice={beltPrice} cubDen={cubDen} realCakePrice={realCakePrice} bnbDividends={bnbDividends} /> :
-                    <Kingdom key={farm.pid} farm={farm} cakePrice={cakePrice} account={account} removed={false} bakePrice={bakePrice} beltPrice={beltPrice} cubDen={cubDen} realCakePrice={realCakePrice} bnbDividends={bnbDividends} />
-            ))}
-          </Route>
-          <Route exact path={`${path}/history`}>
-            {farmsStakedMemoized.map((farm) => (
-                farm.isKingdomLocked ? <LockedKingdom key={farm.pid} farm={farm} cakePrice={cakePrice} account={account} removed bakePrice={bakePrice} beltPrice={beltPrice} cubDen={cubDen} realCakePrice={realCakePrice} bnbDividends={bnbDividends} /> :
-              <Kingdom key={farm.pid} farm={farm} cakePrice={cakePrice} account={account} removed bakePrice={bakePrice} beltPrice={beltPrice} cubDen={cubDen} realCakePrice={realCakePrice} bnbDividends={bnbDividends} />
-            ))}
-          </Route>
-          <Route exact path={`${path}/archived`}>
-            {farmsStakedMemoized.map((farm) => (
-                farm.isKingdomLocked ? <LockedKingdom key={farm.pid} farm={farm} cakePrice={cakePrice} account={account} removed bakePrice={bakePrice} beltPrice={beltPrice} cubDen={cubDen} realCakePrice={realCakePrice} bnbDividends={bnbDividends} /> :
-              <Kingdom key={farm.pid} farm={farm} cakePrice={cakePrice} account={account} removed bakePrice={bakePrice} beltPrice={beltPrice} cubDen={cubDen} realCakePrice={realCakePrice} bnbDividends={bnbDividends} />
-            ))}
-          </Route>
+        <Route exact path={`${path}`}>
+          {farmsStakedMemoized.map((farm) =>
+            farm.isKingdomLocked ? (
+              <LockedKingdom
+                key={farm.pid}
+                farm={farm}
+                cakePrice={cakePrice}
+                account={account}
+                removed={false}
+                bakePrice={bakePrice}
+                beltPrice={beltPrice}
+                cubDen={cubDen}
+                realCakePrice={realCakePrice}
+                bnbDividends={bnbDividends}
+              />
+            ) : (
+              <Kingdom
+                key={farm.pid}
+                farm={farm}
+                cakePrice={cakePrice}
+                account={account}
+                removed={false}
+                bakePrice={bakePrice}
+                beltPrice={beltPrice}
+                cubDen={cubDen}
+                realCakePrice={realCakePrice}
+                bnbDividends={bnbDividends}
+              />
+            ),
+          )}
+        </Route>
+        <Route exact path={`${path}/history`}>
+          {farmsStakedMemoized.map((farm) =>
+            farm.isKingdomLocked ? (
+              <LockedKingdom
+                key={farm.pid}
+                farm={farm}
+                cakePrice={cakePrice}
+                account={account}
+                removed
+                bakePrice={bakePrice}
+                beltPrice={beltPrice}
+                cubDen={cubDen}
+                realCakePrice={realCakePrice}
+                bnbDividends={bnbDividends}
+              />
+            ) : (
+              <Kingdom
+                key={farm.pid}
+                farm={farm}
+                cakePrice={cakePrice}
+                account={account}
+                removed
+                bakePrice={bakePrice}
+                beltPrice={beltPrice}
+                cubDen={cubDen}
+                realCakePrice={realCakePrice}
+                bnbDividends={bnbDividends}
+              />
+            ),
+          )}
+        </Route>
+        <Route exact path={`${path}/archived`}>
+          {farmsStakedMemoized.map((farm) =>
+            farm.isKingdomLocked ? (
+              <LockedKingdom
+                key={farm.pid}
+                farm={farm}
+                cakePrice={cakePrice}
+                account={account}
+                removed
+                bakePrice={bakePrice}
+                beltPrice={beltPrice}
+                cubDen={cubDen}
+                realCakePrice={realCakePrice}
+                bnbDividends={bnbDividends}
+              />
+            ) : (
+              <Kingdom
+                key={farm.pid}
+                farm={farm}
+                cakePrice={cakePrice}
+                account={account}
+                removed
+                bakePrice={bakePrice}
+                beltPrice={beltPrice}
+                cubDen={cubDen}
+                realCakePrice={realCakePrice}
+                bnbDividends={bnbDividends}
+              />
+            ),
+          )}
+        </Route>
       </div>
     )
   }
@@ -305,7 +386,7 @@ const Kingdoms: React.FC = () => {
   return (
     <>
       <PageHeader>
-        <div className='k-header'>
+        <div className="k-header">
           <Heading as="h1" size="xxl" color="primary" mb="10px">
             Vaults
           </Heading>
@@ -313,7 +394,7 @@ const Kingdoms: React.FC = () => {
             <Text bold fontSize="24px">
               TVL&nbsp;
             </Text>
-            <CardValue fontSize="24px" value={totalValue.toNumber()} prefix="$" decimals={2}/>
+            <CardValue fontSize="24px" value={totalValue.toNumber()} prefix="$" decimals={2} />
           </Flex>
         </div>
         <Heading as="h1" size="lg" color="primary" mb="10px" style={{ textAlign: 'left' }}>
@@ -326,7 +407,8 @@ const Kingdoms: React.FC = () => {
           IMPORTANT: Must use the host farm exchange (eg. ShibaSwap, PawSwap) for Vault LP tokens
         </Heading>
         <Heading as="h2" color="warning" mb="10px" style={{ textAlign: 'left' }}>
-          CertiK Audit is Pending: Our other contracts have been audited by CertiK and Vaults are currently under review. Please use at your own discretion until the audit has been published
+          CertiK Audit is Pending: Our other contracts have been audited by CertiK and Vaults are currently under
+          review. Please use at your own discretion until the audit has been published
         </Heading>
         <FeeWrapper>
           <Heading as="h2" color="primary" mb="5px" style={{ textAlign: 'left' }}>
@@ -351,7 +433,13 @@ const Kingdoms: React.FC = () => {
         </FeeWrapper>
       </PageHeader>
       <Page className="k-container">
-        <TotalStaked farms={farmsStakedMemoized} cakePrice={cakePrice} bakePrice={bakePrice} beltPrice={beltPrice} cubDen={cubDen} />
+        <TotalStaked
+          farms={farmsStakedMemoized}
+          cakePrice={cakePrice}
+          bakePrice={bakePrice}
+          beltPrice={beltPrice}
+          cubDen={cubDen}
+        />
         <ControlContainer>
           <ViewControls>
             <ToggleWrapper>

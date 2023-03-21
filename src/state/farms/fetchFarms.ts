@@ -22,7 +22,7 @@ import {
   getBTCAmount,
   getBTCBNBAmount,
   getBTCBNBBakeryAmount,
-  getCAKEamount,
+  getUNIamount,
   getCUBAmount,
   getETHAmount,
   getSPSBNBAmount,
@@ -136,49 +136,49 @@ const fetchFarms = async (farmsToFetch: FarmConfig[]) => {
 
       if (farmConfig.isKingdom) {
         switch (farmConfig.pid) {
-          case 0:
-            kingdomSupply = await getCAKEamount()
-            break
-          case 1:
-            kingdomSupply = await getWBNBBUSDAmount()
-            break
-          case 2:
-            kingdomSupply = await getWBNBETHAmount()
-            break
           case 3:
-            kingdomSupply = await getWBNBDOTAmount()
+            kingdomSupply = await getUNIamount()
             break
-          case 4:
-            kingdomSupply = await getCUBAmount()
-            break
-          case 5:
-            kingdomSupply = await getBTCBNBBakeryAmount()
-            break
-          case 6:
-            kingdomSupply = await getBTCAmount()
-            kingdomSupply = new BigNumber(kingdomSupply).div(DEFAULT_TOKEN_DECIMAL).toString()
-            beltAPR = beltData.btc
-            break
-          case 7:
-            kingdomSupply = await getETHAmount()
-            kingdomSupply = new BigNumber(kingdomSupply).div(DEFAULT_TOKEN_DECIMAL).toString()
-            beltAPR = beltData.eth
-            break
-          case 8:
-            kingdomSupply = await getUSDAmount()
-            kingdomSupply = new BigNumber(kingdomSupply).div(DEFAULT_TOKEN_DECIMAL).toString()
-            beltAPR = beltData.stable
-            beltRate = beltData.stableRate
-            break
-          case 9:
-            kingdomSupply = await getBTCBNBAmount()
-            break
-          case 10:
-            kingdomSupply = await getSPSBNBAmount()
-            break
-          case 34:
-            kingdomSupply = await fetchLockedKingdomTotalStaked()
-            break
+          // case 1:
+          //   kingdomSupply = await getWBNBBUSDAmount()
+          //   break
+          // case 2:
+          //   kingdomSupply = await getWBNBETHAmount()
+          //   break
+          // case 3:
+          //   kingdomSupply = await getWBNBDOTAmount()
+          //   break
+          // case 4:
+          //   kingdomSupply = await getCUBAmount()
+          //   break
+          // case 5:
+          //   kingdomSupply = await getBTCBNBBakeryAmount()
+          //   break
+          // case 6:
+          //   kingdomSupply = await getBTCAmount()
+          //   kingdomSupply = new BigNumber(kingdomSupply).div(DEFAULT_TOKEN_DECIMAL).toString()
+          //   beltAPR = beltData.btc
+          //   break
+          // case 7:
+          //   kingdomSupply = await getETHAmount()
+          //   kingdomSupply = new BigNumber(kingdomSupply).div(DEFAULT_TOKEN_DECIMAL).toString()
+          //   beltAPR = beltData.eth
+          //   break
+          // case 8:
+          //   kingdomSupply = await getUSDAmount()
+          //   kingdomSupply = new BigNumber(kingdomSupply).div(DEFAULT_TOKEN_DECIMAL).toString()
+          //   beltAPR = beltData.stable
+          //   beltRate = beltData.stableRate
+          //   break
+          // case 9:
+          //   kingdomSupply = await getBTCBNBAmount()
+          //   break
+          // case 10:
+          //   kingdomSupply = await getSPSBNBAmount()
+          //   break
+          // case 34:
+          //   kingdomSupply = await fetchLockedKingdomTotalStaked()
+          //   break
           default:
             break
         }
@@ -195,7 +195,6 @@ const fetchFarms = async (farmsToFetch: FarmConfig[]) => {
       let tokenPriceVsQuote
       let quoteTokenAmount
       let lpTotalInQuoteTokenPCS = new BigNumber(0)
-
       if (farmConfig.isTokenOnly || farmConfig.isKingdomToken) {
         tokenAmount = farmConfig.isKingdomToken
           ? new BigNumber(kingdomSupply).div(new BigNumber(10).pow(tokenDecimals))
@@ -208,7 +207,6 @@ const fetchFarms = async (farmsToFetch: FarmConfig[]) => {
         } else {
           tokenPriceVsQuote = new BigNumber(quoteTokenBalanceLP).div(new BigNumber(tokenBalanceLP))
         }
-
         lpTotalInQuoteToken = tokenAmount.times(tokenPriceVsQuote)
         // lpTotalInQuoteTokenPCS = tokenAmountPCS.times(tokenPriceVsQuote)
       } else {
@@ -253,9 +251,7 @@ const fetchFarms = async (farmsToFetch: FarmConfig[]) => {
           tokenPriceVsQuote = new BigNumber(quoteTokenBalanceLP).div(new BigNumber(tokenBalanceLP))
         }
       }
-
       const tokenAmountTotal = new BigNumber(tokenBalanceLP).div(BIG_TEN.pow(tokenDecimals))
-
       const mCalls = [
         {
           address: getMasterChefAddress(),
@@ -303,7 +299,7 @@ const fetchFarms = async (farmsToFetch: FarmConfig[]) => {
         const kingdomPoolWeight = kingdomCorrectAlloc.div(new BigNumber(totalAllocPoint))
 
         let poolWeightPCS = new BigNumber(0)
-        if (farmConfig.altPid || farmConfig.altPid === 0) {
+        if (farmConfig.altPid || farmConfig.altPid === 3) {
           let hostMasterchef = getPCSv2MasterChefAddress()
           let hostAbi = pcsv2ABI
           if (farmConfig.farmType === 'Belt') {

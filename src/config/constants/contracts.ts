@@ -13,7 +13,7 @@ export default {
   kingdoms: {
     56: '0x2e72f4b196b9e5b89c29579cc135756a00e6cbbd',
     97: '',
-    5: '0x226E3C40b903f7977cF59335Bed85ec58cdEB0E9',
+    5: '0xA05f1339DbE12751FFE9407bd93d9C2312b9C2b2',
   },
   lockedKingdoms: {
     56: '0x08bea2702d89abb8059853d654d0838c5e06fe0b',
@@ -27,7 +27,7 @@ export default {
   pcsV2masterChef: {
     56: '0x73feaa1eE314F8c655E354234017bE2193C9E24E',
     97: '',
-    5: '0x16C5E3639f9C31aC38380217D45865c2aA6910Ec',
+    5: '0xB631299Ed1Db9B7152D24E65b724bc9F53cA0b40',
   },
   bakery: {
     56: '0x20ec291bb8459b6145317e7126532ce7ece5056f',

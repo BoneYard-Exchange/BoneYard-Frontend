@@ -20,7 +20,7 @@ const K = styled.div`
   align-self: baseline;
   background: ${(props) => props.theme.card.background};
   border-radius: 8px;
-  box-shadow: 0 3px 4px -3px rgba(0,0,0,0.1),0 4px 6px -2px rgba(0,0,0,0.05);
+  box-shadow: 0 3px 4px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -87,12 +87,32 @@ interface KingdomProps {
   bnbDividends?: any
 }
 
-const Kingdom: React.FC<KingdomProps> = ({ farm, removed, cakePrice, account, bakePrice, beltPrice, cubDen, realCakePrice, bnbDividends }) => {
+const Kingdom: React.FC<KingdomProps> = ({
+  farm,
+  removed,
+  cakePrice,
+  account,
+  bakePrice,
+  beltPrice,
+  cubDen,
+  realCakePrice,
+  bnbDividends,
+}) => {
   const [showExpandableSection, setShowExpandableSection] = useState(false)
 
-  const { apr, lpTotalInQuoteToken, lpSymbol, lpTokenBalancePCS = 0, lpTotalInQuoteTokenPCS = 0, quoteToken: { busdPrice: quoteTokenPriceUsd }, altPid, farmType, token: { busdPrice: tokenPriceString }, compounding } = farm
+  const {
+    apr,
+    lpTotalInQuoteToken,
+    lpSymbol,
+    lpTokenBalancePCS = 0,
+    lpTotalInQuoteTokenPCS = 0,
+    quoteToken: { busdPrice: quoteTokenPriceUsd },
+    altPid,
+    farmType,
+    token: { busdPrice: tokenPriceString },
+    compounding,
+  } = farm
   const farmImage = lpSymbol.split(' ')[0].toLocaleLowerCase()
-
   let aprApy = getKingdomAPRAPY(farm, realCakePrice, bakePrice, beltPrice, cubDen)
 
   const { dailyAPR, totalAPY, hostApr } = aprApy
@@ -101,32 +121,56 @@ const Kingdom: React.FC<KingdomProps> = ({ farm, removed, cakePrice, account, ba
   const rawTokenBalance = tokenBalance ? getBalanceNumber(new BigNumber(tokenBalance)) : 0
   const rawStakedBalance = stakedBalance ? getBalanceNumber(new BigNumber(stakedBalance)) : 0
   const rawEarningsBalance = earnings ? getBalanceNumber(new BigNumber(earnings)) : 0
-  const tokenPrice = new BigNumber(tokenPriceString);
+  const tokenPrice = new BigNumber(tokenPriceString)
   let oneTokenQuoteValue = new BigNumber(0)
 
   if (!farm.isKingdomToken)
-    oneTokenQuoteValue = lpTotalInQuoteTokenPCS ? new BigNumber(lpTotalInQuoteTokenPCS).div(new BigNumber(lpTokenBalancePCS)).times(quoteTokenPriceUsd).div(DEFAULT_TOKEN_DECIMAL) : new BigNumber(0)
-  else oneTokenQuoteValue = farm.farmType !== 'Belt' ? tokenPrice.div(DEFAULT_TOKEN_DECIMAL) : new BigNumber(farm.token.busdPrice).div(DEFAULT_TOKEN_DECIMAL)
+    oneTokenQuoteValue = lpTotalInQuoteTokenPCS
+      ? new BigNumber(lpTotalInQuoteTokenPCS)
+          .div(new BigNumber(lpTokenBalancePCS))
+          .times(quoteTokenPriceUsd)
+          .div(DEFAULT_TOKEN_DECIMAL)
+      : new BigNumber(0)
+  else
+    oneTokenQuoteValue =
+      farm.farmType !== 'Belt'
+        ? tokenPrice.div(DEFAULT_TOKEN_DECIMAL)
+        : new BigNumber(farm.token.busdPrice).div(DEFAULT_TOKEN_DECIMAL)
 
   const walletBalanceQuoteValue = tokenBalance ? new BigNumber(tokenBalance).times(oneTokenQuoteValue).toNumber() : 0
 
   const depositBalanceQuoteValue = stakedBalance ? new BigNumber(stakedBalance).times(oneTokenQuoteValue).toNumber() : 0
 
   const totalValueFormated = lpTotalInQuoteToken
-    ? `$${Number(new BigNumber(lpTotalInQuoteToken).times(quoteTokenPriceUsd)).toLocaleString(undefined, { maximumFractionDigits: 0 })}`
+    ? `$${Number(new BigNumber(lpTotalInQuoteToken).times(quoteTokenPriceUsd)).toLocaleString(undefined, {
+        maximumFractionDigits: 0,
+      })}`
     : '-'
   const farmAPR = apr && apr.toLocaleString('en-US', { maximumFractionDigits: 2 })
 
-  aprApy = { ...aprApy, compounding, farmAPR, apr: altPid === 12 ? hostApr : apr, cakePrice, quoteTokenPriceUsd: Number(quoteTokenPriceUsd), lpTotalInQuoteToken }
+  aprApy = {
+    ...aprApy,
+    compounding,
+    farmAPR,
+    apr: altPid === 12 ? hostApr : apr,
+    cakePrice,
+    quoteTokenPriceUsd: Number(quoteTokenPriceUsd),
+    lpTotalInQuoteToken,
+  }
 
   return (
     <>
       <Spacer />
       <K>
         {farm.token.symbol === 'CUB' && <StyledCardAccent />}
-        <KMain role="presentation" className="flex-grid k-grid" onClick={() => setShowExpandableSection(!showExpandableSection)}
-      >
-          <div className="col"><KImage src={`/images/farms/${farmImage}.png`} alt={lpSymbol} width={64} height={64} /></div>
+        <KMain
+          role="presentation"
+          className="flex-grid k-grid"
+          onClick={() => setShowExpandableSection(!showExpandableSection)}
+        >
+          <div className="col">
+            <KImage src={`/images/farms/${farmImage}.png`} alt={lpSymbol} width={64} height={64} />
+          </div>
           <div className="col">
             <Flex justifyContent="flex-start" alignItems="center">
               <Text className="token">{lpSymbol}</Text>
@@ -140,7 +184,7 @@ const Kingdom: React.FC<KingdomProps> = ({ farm, removed, cakePrice, account, ba
               value={rawTokenBalance}
               decimals={rawTokenBalance ? 2 : 1}
               unit=""
-              color={rawTokenBalance ? "warning" : "text"}
+              color={rawTokenBalance ? 'warning' : 'text'}
             />
             <Text>Balance</Text>
           </div>
@@ -150,7 +194,7 @@ const Kingdom: React.FC<KingdomProps> = ({ farm, removed, cakePrice, account, ba
               value={rawStakedBalance}
               decimals={rawStakedBalance ? 2 : 1}
               unit=""
-              color={rawStakedBalance ? "warning" : "text"}
+              color={rawStakedBalance ? 'warning' : 'text'}
             />
             <Text>Deposited</Text>
           </div>
@@ -160,7 +204,7 @@ const Kingdom: React.FC<KingdomProps> = ({ farm, removed, cakePrice, account, ba
               value={rawEarningsBalance}
               decimals={rawEarningsBalance ? 2 : 1}
               unit=""
-              color={rawEarningsBalance ? "warning" : "text"}
+              color={rawEarningsBalance ? 'warning' : 'text'}
             />
             <Text>Rewards</Text>
           </div>
@@ -175,12 +219,7 @@ const Kingdom: React.FC<KingdomProps> = ({ farm, removed, cakePrice, account, ba
             <Text color="warning">APY</Text>
           </div>
           <div className="col">
-            <Balance
-              fontSize="16px"
-              value={dailyAPR}
-              decimals={2}
-              unit="%"
-            />
+            <Balance fontSize="16px" value={dailyAPR} decimals={2} unit="%" />
             <Text>Daily</Text>
           </div>
         </KMain>
