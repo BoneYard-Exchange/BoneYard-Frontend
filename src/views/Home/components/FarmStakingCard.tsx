@@ -102,7 +102,7 @@ const FarmedStakingCard = () => {
           </div>
           <div>
             <Block>
-              <Label>BNB Dividends <br />for Staking CUB:</Label>
+              <Label>BNB Dividends <br />for Staking BOYD:</Label>
               <BNBHarvestBalance bnbDividends={bnbDividends} />
             </Block>
             <Actions>
