@@ -416,7 +416,7 @@ const Farms: React.FC<FarmsProps> = ({ tokenMode, kingdomMode }) => {
 
   let header = TranslateString(674, 'Farms')
   let heading = TranslateString(320, 'Stake LP tokens to earn BOYD')
-  const subHeading = TranslateString(10000, 'Deposit Fee will be used to buyback BOYD and bLEO')
+  const subHeading = TranslateString(10000, 'Deposit Fee will be used to buyback CUB and bLEO')
   // let extra = null
   // const data = useGetStats()
   // const tvl = data ? data.total_value_locked_all.toLocaleString('en-US', { maximumFractionDigits: 0 }) : null
@@ -454,7 +454,7 @@ const Farms: React.FC<FarmsProps> = ({ tokenMode, kingdomMode }) => {
 
               <p style={{ marginBottom: '10px' }}>
                 MTB Assets (HIVE and HBD) Can Be Wrapped and Utilized to Provide Liquidity and Earn High Yields. MTB
-                Assets Generate Revenue Which Buys and Burns BOYD Each Day
+                Assets Generate Revenue Which Buys and Burns CUB Each Day
               </p>
 
               <Button className="button-cad">

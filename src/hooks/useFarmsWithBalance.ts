@@ -19,12 +19,12 @@ const useFarmsWithBalance = () => {
   const { fastRefresh } = useRefresh()
 
   useEffect(() => {
-    const nonKingdomFarms = farmsConfig.filter(farm => !farm.isKingdom)
-    const kingdomFarms = farmsConfig.filter(farm => farm.isKingdom && !farm.isKingdomLocked)
+    const nonKingdomFarms = farmsConfig.filter((farm) => !farm.isKingdom)
+    const kingdomFarms = farmsConfig.filter((farm) => farm.isKingdom && !farm.isKingdomLocked)
     const fetchBalances = async () => {
       const calls = nonKingdomFarms.map((farm) => ({
         address: getMasterChefAddress(),
-        name: 'pendingCub',
+        name: 'pendingBoneYard',
         params: [farm.pid, account],
       }))
 
@@ -33,14 +33,16 @@ const useFarmsWithBalance = () => {
 
       const callsK = kingdomFarms.map((farm) => ({
         address: getKingdomsAddress(),
-        name: 'pendingCUB',
+        name: 'pendingBOYD',
         params: [farm.pid, account],
       }))
 
       const rawResultsK = await multicall(kingdomsABI, callsK)
       const resultsK = kingdomFarms.map((farm, index) => ({ ...farm, balance: new BigNumber(rawResultsK[index]) }))
 
-      const resultsLK = farmsConfig.filter(farm => farm.isKingdomLocked).map(farm => ({ ...farm, balance: new BigNumber(0) }))
+      const resultsLK = farmsConfig
+        .filter((farm) => farm.isKingdomLocked)
+        .map((farm) => ({ ...farm, balance: new BigNumber(0) }))
 
       setFarmsWithBalances([...results, ...resultsLK, ...resultsK])
     }

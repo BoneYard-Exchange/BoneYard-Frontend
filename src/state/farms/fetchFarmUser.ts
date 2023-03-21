@@ -86,7 +86,6 @@ export const fetchFarmUserStakedBalances = async (account: string, farmsToFetch:
     name: 'userInfo',
     params: [account],
   }))
-
   /* const fullBalance = useMemo(() => {
     return new BigNumber(shares?.minus(performanceFee).multipliedBy(pricePerFullShare).dividedBy(new BigNumber(10).pow(18)).toFixed(18)) || new BigNumber(0);
   }, [shares, performanceFee, pricePerFullShare]); */
@@ -94,7 +93,6 @@ export const fetchFarmUserStakedBalances = async (account: string, farmsToFetch:
   const rawStakedBalancesMC = await multicall(masterchefABI, callsMC)
   const rawStakedBalancesK = await multicall(kingdomsABI, callsK)
   const rawStakedBalancesLK = await multicall(lockedKingdomsABI, callsLK)
-
   const rawStakedBalances = [...rawStakedBalancesMC, ...rawStakedBalancesLK, ...rawStakedBalancesK]
   // parse them to their numeric forms
   // todo: might need to change this for locked to get right number of d.p.

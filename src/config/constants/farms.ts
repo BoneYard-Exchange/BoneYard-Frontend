@@ -399,15 +399,16 @@ const farms: FarmConfig[] = [
   //   isKingdom: true,
   //   isKingdomToken: true,
   //   isKingdomLocked: true,
-  //   farmType: "Cub DeFi",
-  //   lpSymbol: "CUB",
+  //   farmType: 'Cub DeFi',
+  //   lpSymbol: 'CUB',
   //   lpAddresses: {
   //     97: '',
   //     56: '0x0EF564D4F8D6C0ffE13348A32e21EFd55e508e84',
+  //     5: '0xBA563e71D85931C3B3c701acC9255C8514AEf6E2', // BOYD-USDC LP
   //   },
-  //   token: tokens.cub,
-  //   quoteToken: tokens.busd,
-  //   kingdomContract: '0x08bea2702d89abb8059853d654d0838c5e06fe0b'
+  //   token: tokens.cake,
+  //   quoteToken: tokens.usdc,
+  //   kingdomContract: '0xCd1B9b0D9fF19aB3658fFdC3724ae4b18D391946',
   // },
   // {
   //   pid: 4,
@@ -419,28 +420,30 @@ const farms: FarmConfig[] = [
   //   lpSymbol: 'CUB',
   //   lpAddresses: {
   //     97: '',
-  //     56: '0x0EF564D4F8D6C0ffE13348A32e21EFd55e508e84', // CUB-BUSD LP
-  //   },
-  //   token: tokens.cub,
-  //   quoteToken: tokens.busd,
-  //   kingdomContract: '0xc2adf5fc4d4e6c2cc97f8190acbdf808c689117c',
-  // },
-  // {
-  //   pid: 0,
-  //   altPid: 0,
-  //   compounding: 4200,
-  //   isKingdom: true,
-  //   isKingdomToken: true,
-  //   farmType: 'Pancake v2',
-  //   lpSymbol: 'CAKE',
-  //   lpAddresses: {
-  //     97: '',
-  //     56: '0x0ed8e0a2d99643e1e65cca22ed4424090b8b7458', // CAKE-BUSD LP
+  //     56: '',
+  //     5: '0xBA563e71D85931C3B3c701acC9255C8514AEf6E2', // BOYD-USDC LP
   //   },
   //   token: tokens.cake,
-  //   quoteToken: tokens.busd,
-  //   kingdomContract: '0x77440f4dc7b4ef591e78d460374bd12d3d6bdad8',
+  //   quoteToken: tokens.usdc,
+  //   kingdomContract: '0xc2adf5fc4d4e6c2cc97f8190acbdf808c689117c',
   // },
+  {
+    pid: 3,
+    altPid: 3,
+    compounding: 4200,
+    isKingdom: true,
+    isKingdomToken: true,
+    farmType: 'Uniswap v2',
+    lpSymbol: 'UNI',
+    lpAddresses: {
+      97: '',
+      56: '', // UNI-USDC LP
+      5: '0x13f7E29E62Db9EE89747f272FE02B9C7C8B7B15B',
+    },
+    token: tokens.uni,
+    quoteToken: tokens.usdc,
+    kingdomContract: '0x5961386e647697551310271792c6852f845dd166',
+  },
   // {
   //   pid: 1,
   //   altPid: 252,

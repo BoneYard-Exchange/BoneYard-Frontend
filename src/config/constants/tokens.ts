@@ -3,6 +3,16 @@ const tokens = {
     symbol: 'ETH',
     projectLink: 'https://www.binance.com/',
   },
+  uni: {
+    symbol: 'UNI',
+    address: {
+      56: '',
+      97: '',
+      5: '0x2F59e35A4980d4CbC636028a0B1B36e5133bC607',
+    },
+    decimals: 18,
+    projectLink: 'https://pancakeswap.finance/',
+  },
   cake: {
     symbol: 'BOYD',
     address: {

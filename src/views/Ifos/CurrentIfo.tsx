@@ -40,9 +40,7 @@ const Ifo = () => {
 
   return (
     <div>
-      <IfoCards isSingle>
-        {activeIfo? <IfoCard ifo={activeIfo} /> : <Text>No Active IDOs</Text>}
-      </IfoCards>
+      <IfoCards isSingle>{activeIfo ? <IfoCard ifo={activeIfo} /> : <Text>No Active IDOs</Text>}</IfoCards>
       <LaunchIfoCallout>
         <div>
           <Title as="h2">{TranslateString(592, 'How to Participate in Decentralized IDOs on BoneYard Finance')}</Title>
@@ -52,20 +50,30 @@ const Ifo = () => {
             <li>{TranslateString(598, 'Get BOYD-BUSD LP tokens (PCSv2 Only) on ShibariumSwap')}</li>
           </List>
           <Flex mb="16px">
-            <LinkExternal href="https://exchange.cubdefi.com/" mr="16px">
+            <LinkExternal href="https://app.uniswap.org/#/swap" mr="16px">
               {TranslateString(999, 'Buy BOYD')}
             </LinkExternal>
-            <LinkExternal href="https://pancakeswap.finance/add/0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56/0x50D809c74e0B8e49e7B4c65BB3109AbE3Ff4C1C1">
+            <LinkExternal href="https://app.uniswap.org/#/add/v2/0x4B00c8c4F6A1eD1c476c060D32cEA97d61d23113/0xC2E45A6eCa39A968ed9cb1Dc42B5345bC736E280">
               {TranslateString(999, 'Get LP tokens')}
             </LinkExternal>
           </Flex>
           <Heading mb="16px">{TranslateString(600, 'During IDO')}:</Heading>
           <List>
-            <li>{TranslateString(602, 'While the IDO is live, commit your BOYD-BUSD LP tokens to participate in the decentralized raise at the predetermined token price')}</li>
+            <li>
+              {TranslateString(
+                602,
+                'While the IDO is live, commit your BOYD-BUSD LP tokens to participate in the decentralized raise at the predetermined token price',
+              )}
+            </li>
           </List>
           <Heading mb="16px">{TranslateString(604, 'After IDO')}:</Heading>
           <List>
-            <li>{TranslateString(606, 'Click "Claim" to claim the IDO tokens you purchased along with any unspent BOYD-BUSD LP.')}</li>
+            <li>
+              {TranslateString(
+                606,
+                'Click "Claim" to claim the IDO tokens you purchased along with any unspent BOYD-BUSD LP.',
+              )}
+            </li>
             <li>{TranslateString(608, 'Done!')}</li>
           </List>
           <img src="images/cub/boyd_finance.png" alt="boyd" />
@@ -89,11 +97,7 @@ const Ifo = () => {
                 'Launch your project with BOYDefi to bring your token directly to the most active and rapidly growing community on Shibarium.',
               )}
             </Text>
-            <Button
-              as="a"
-              href="https://forms.gle/Q2BBZE4BioxtD9TM9"
-              external
-            >
+            <Button as="a" href="https://forms.gle/Q2BBZE4BioxtD9TM9" external>
               {TranslateString(516, 'Apply to launch')}
             </Button>
           </div>
