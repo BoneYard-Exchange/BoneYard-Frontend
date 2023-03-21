@@ -164,7 +164,7 @@ const KingdomDetail: React.FC<KingdomDetailProps> = ({
         </Detail>
         <Detail>
           <StyledLinkExternal external href={farmContract}>Farm Contract</StyledLinkExternal>
-          <StyledLinkExternal external href={vaultContract}>Kingdom Contract</StyledLinkExternal>
+          <StyledLinkExternal external href={vaultContract}>Valuts Contract</StyledLinkExternal>
           {!removed && (
             <>
               <StyledLinkExternal external href={buyTokenUrl}>
