@@ -65,7 +65,7 @@ const App: React.FC = () => {
             <Route path="/dens">
               <Farms tokenMode />
             </Route>
-            <Route path="/kingdoms">
+            <Route path="/vaults">
               <Kingdoms />
             </Route>
             <Route path="/ido">
