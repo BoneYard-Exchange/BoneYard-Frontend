@@ -33,7 +33,7 @@ const config: MenuEntry[] = [
   {
     label: 'Vaults',
     icon: 'PawIcon',
-    href: '/Vaults',
+    href: '/vaults',
     status: {
       text: 'AUTO',
       color: 'warning',
